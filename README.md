@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="/assets/icon.png" margin="auto" height="175"/>
+    <img src="assets/icon.png" margin="auto" height="175"/>
 </p>
 <p align="center">
     <a href="https://github.com/bmresearch/Solnet.Raydium/actions/workflows/dotnet.yml">
@@ -21,7 +21,7 @@ Solnet.Raydium is a package within the same `Solnet.` namespace that implements 
 - [Raydium Home](https://raydium.io/)
 - [Raydium Swap](https://raydium.io/swap/)
 - [Raydium Documentation](https://raydium.gitbook.io/raydium/)
-- [Raydium UI on Github] (https://github.com/raydium-io/raydium-ui)
+- [Raydium UI on Github](https://github.com/raydium-io/raydium-ui)
 
 ## Goals/Features
 - List the staking pools that belong to a wallet
