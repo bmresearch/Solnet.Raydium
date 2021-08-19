@@ -2,18 +2,18 @@
 
     <PropertyGroup>
         <Description>
-            Solnet.Template implements functionality to integrate Template project into .Net applications.
+          Solnet.Raydium implements functionality to integrate Raydium project into .Net applications.
         </Description>
         <TargetFramework>net5.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
 
-        <RootNamespace>Solnet.Template</RootNamespace>
+        <RootNamespace>Solnet.Raydium</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-            <_Parameter1>Solnet.Template.Test</_Parameter1>
+            <_Parameter1>Solnet.Raydium.Test</_Parameter1>
         </AssemblyAttribute>
     </ItemGroup>
 
@@ -24,6 +24,10 @@
         <PackageReference Include="Solnet.Programs" Version="0.3.2" />
         <PackageReference Include="Solnet.Rpc" Version="0.3.2" />
         <PackageReference Include="Solnet.Wallet" Version="0.3.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\" />
     </ItemGroup>
 
     <Import Project="..\SharedBuildProperties.props" />
