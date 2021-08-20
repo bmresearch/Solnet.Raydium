@@ -36,8 +36,8 @@ Solnet.Raydium is a package within the same `Solnet.` namespace that implements 
 - net 5.0
 
 ## Dependencies
-- Solnet.Wallet 0.3.2
-- Solnet.Rpc 0.3.2
+- Solnet.Wallet 0.4.3
+- Solnet.Rpc 0.4.3
 
 ## Examples
 
