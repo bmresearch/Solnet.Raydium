@@ -24,4 +24,8 @@
         <ProjectReference Include="..\Solnet.Raydium\Solnet.Raydium.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Resources\" />
+    </ItemGroup>
+
 </Project>

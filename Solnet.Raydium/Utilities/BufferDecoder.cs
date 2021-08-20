@@ -134,6 +134,41 @@ namespace Solnet.Raydium.Utilities
             return new U128(ReadBytes(16));
         }
 
+        /// <summary>
+        /// Decode the buffer using a type as a layout guide for properties
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>An instance of the type specified populated with the decoded data properties populated.</returns>
+        public T DecodeAs<T >() where T : new()
+        {
+            var dataType = typeof (T);
+            var obj = new T();
+            foreach(var prop in dataType.GetProperties())
+            {
+                if (prop.PropertyType == typeof(ulong))
+                {
+                    prop.SetValue(obj, ReadU64());
+                }
+                else if (prop.PropertyType == typeof(PublicKey))
+                {
+                    prop.SetValue(obj, ReadPublicKey());
+                }
+                else if (prop.PropertyType == typeof(byte))
+                {
+                    prop.SetValue(obj, ReadByte());
+                }
+                else if (prop.PropertyType == typeof(U128))
+                {
+                    prop.SetValue(obj, ReadU128());
+                }
+                else
+                {
+                    throw new NotSupportedException($"Property {prop.Name} type {prop.PropertyType.FullName}");
+                }
+            }
+            return obj;
+        }
+
     }
 
 }
