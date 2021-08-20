@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solnet.Raydium.Models.Layouts;
 using Solnet.Raydium.Utilities;
+using Solnet.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,8 +62,18 @@ namespace Solnet.Raydium.Test
 
         }
 
-
-
+        [TestMethod]
+        public void TestDecodeUserStakeInfo()
+        {
+            var data = "AQAAAAAAAAAwJVfYF0XSStGbXQMEJ/GjLYbJ/DmGry871KvKi1alJ4TczqvkNHCV2q7CWo65cMM5ZlqBeZsecBTfDkODjiSiTSHqFwAAAACHBIdMCAAAAA==";
+            var buf = BufferDecoder.CreateFromBase64(data);
+            var obj = buf.DecodeAs<UserStakeInfo>();
+            Assert.AreEqual(1U, obj.State);
+            Assert.AreEqual("4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW", obj.PoolId.Key);
+            Assert.AreEqual("9we6kjtbcZ2vy3GSLLsZTEhbAqXPTRvEyoxa8wxSqKp5", obj.StakerOwner.Key); // test wallet address
+            Assert.AreEqual(401219917U, obj.DepositBalance);
+            Assert.AreEqual(35643655303U, obj.RewardDebt);
+        }
 
     }
 }

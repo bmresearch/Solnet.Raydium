@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Solnet.Raydium.Models.Layouts
 {
     /// <summary>
-    /// STAKE_INFO_LAYOUT account data
+    /// STAKE_INFO_LAYOUT
     /// </summary>
     public class StakeInfo
     {
