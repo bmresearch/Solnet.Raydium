@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Solnet.Wallet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,12 @@ namespace Solnet.Raydium
 
         public const string STAKE_PROGRAM_ID_V5 = "9KEPoZmtHUrBbhWN1v1KWLMkkvwY6WLtAVUCPRtRjP4z";
 
-
-
-
         public const string RAYDIUM_SINGLE_SIDED_STAKING_POOL = "EhhTKczWMGQt46ynNeRX1WfeagwwJd7ufHvCDjRxjo5Q";
 
+        /// <summary>
+        /// The public key of the sysvar clock account.
+        /// </summary>
+        public static readonly PublicKey SYSVAR_CLOCK_PUBKEY = new("SysvarC1ock11111111111111111111111111111111");
 
     }
 }

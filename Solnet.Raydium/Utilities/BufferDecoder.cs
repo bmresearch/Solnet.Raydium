@@ -31,7 +31,7 @@ namespace Solnet.Raydium.Utilities
         private byte[] _buffer;
 
         /// <summary>
-        /// Constructs a buffer decode with the give byte buffer.
+        /// Constructs a buffer decode with the given byte buffer.
         /// </summary>
         /// <param name="buffer"></param>
         public BufferDecoder(byte[] buffer) 
@@ -82,7 +82,7 @@ namespace Solnet.Raydium.Utilities
         /// <returns>The byte read.</returns>
         public Span<byte> ReadBytes(int bytesToRead)
         {
-            if ((Cursor+bytesToRead) > Length) throw new ApplicationException("Buffer exhausted");
+            if ((Cursor + bytesToRead) > Length) throw new ApplicationException("Buffer exhausted");
             var span = _buffer.AsSpan(Cursor, bytesToRead);
             Cursor += bytesToRead;
             return span;
