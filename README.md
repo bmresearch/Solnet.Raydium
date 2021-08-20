@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/icon.png" margin="auto" height="175"/>
+    <img src="https://github.com/bmresearch/Solnet.Raydium/raw/main/assets/logo.png" margin="auto" height="175"/>
 </p>
 <p align="center">
     <a href="https://github.com/bmresearch/Solnet.Raydium/actions/workflows/dotnet.yml">
