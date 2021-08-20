@@ -31,7 +31,7 @@ namespace Solnet.Raydium.Utilities
         private byte[] _buffer;
 
         /// <summary>
-        /// Constructs a buffer decode with the give byte buffer.
+        /// Constructs a buffer decode with the given byte buffer.
         /// </summary>
         /// <param name="buffer"></param>
         public BufferDecoder(byte[] buffer) 
@@ -82,7 +82,7 @@ namespace Solnet.Raydium.Utilities
         /// <returns>The byte read.</returns>
         public Span<byte> ReadBytes(int bytesToRead)
         {
-            if ((Cursor+bytesToRead) > Length) throw new ApplicationException("Buffer exhausted");
+            if ((Cursor + bytesToRead) > Length) throw new ApplicationException("Buffer exhausted");
             var span = _buffer.AsSpan(Cursor, bytesToRead);
             Cursor += bytesToRead;
             return span;
@@ -132,6 +132,41 @@ namespace Solnet.Raydium.Utilities
         {
             if ((Cursor + 8) > Length) throw new ApplicationException("Buffer exhausted");
             return new U128(ReadBytes(16));
+        }
+
+        /// <summary>
+        /// Decode the buffer using a type as a layout guide for properties
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>An instance of the type specified populated with the decoded data properties populated.</returns>
+        public T DecodeAs<T >() where T : new()
+        {
+            var dataType = typeof (T);
+            var obj = new T();
+            foreach(var prop in dataType.GetProperties())
+            {
+                if (prop.PropertyType == typeof(ulong))
+                {
+                    prop.SetValue(obj, ReadU64());
+                }
+                else if (prop.PropertyType == typeof(PublicKey))
+                {
+                    prop.SetValue(obj, ReadPublicKey());
+                }
+                else if (prop.PropertyType == typeof(byte))
+                {
+                    prop.SetValue(obj, ReadByte());
+                }
+                else if (prop.PropertyType == typeof(U128))
+                {
+                    prop.SetValue(obj, ReadU128());
+                }
+                else
+                {
+                    throw new NotSupportedException($"Property {prop.Name} type {prop.PropertyType.FullName}");
+                }
+            }
+            return obj;
         }
 
     }

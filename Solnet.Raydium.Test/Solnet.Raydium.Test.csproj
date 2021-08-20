@@ -16,12 +16,15 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Solnet.Rpc" Version="0.3.2" />
-        <PackageReference Include="Solnet.Wallet" Version="0.3.2" />
+        <PackageReference Include="Solnet.Rpc" Version="0.4.3" />
+        <PackageReference Include="Solnet.Wallet" Version="0.4.3" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Solnet.Raydium\Solnet.Raydium.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Resources\" />
+    </ItemGroup>
 </Project>

@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Solnet.Raydium.Models.Layouts;
 using Solnet.Raydium.Utilities;
+using Solnet.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,40 @@ namespace Solnet.Raydium.Test
             Assert.AreEqual(1, buf.ReadByte());
             Assert.AreEqual(0, buf.ReadByte());
             buf.ReadU64();
+        }
+
+        [TestMethod]
+        public void TestDecodeStakeInfo()
+        {
+            var data = "AQAAAAAAAAD/AAAAAAAAAHVGOxPNp222DfzL4x7V/CEcMZ3a7PPcqhvSOyeluvlpn0MrR+YigqNY5gHNDbS0emUyAmyVMnqGUqdDfzD3JJffAl8MQ4lt+9LLGPp3nkGhaxCx802CIpEdi/Wrpm69I98CXwxDiW370ssY+neeQaFrELHzTYIikR2L9aumbr0j6AMAAAAAAAABAAAAAAAAAICeCXdfAQAAWTQqrxQAAAAAAAAAAAAAAC6lgwUAAAAAYOoAAAAAAAA=";
+            var buf = BufferDecoder.CreateFromBase64(data);
+            var obj = buf.DecodeAs<StakeInfo>();
+            Assert.AreEqual(1U, obj.State);
+            Assert.AreEqual(255U, obj.Nonce);
+            Assert.AreEqual("8tnpAECxAT9nHBqR1Ba494Ar5dQMPGhL31MmPJz1zZvY", obj.PoolLpTokenAccount.Key);
+            Assert.AreEqual("BihEG2r7hYax6EherbRmuLLrySBuSXx4PYGd9gAsktKY", obj.PoolRewardTokenAccount.Key);
+            Assert.AreEqual("G1Y1oLPnHnndErCydT1GVGLiMuB51THQiRfrDVCH4Hsx", obj.Owner.Key);
+            Assert.AreEqual("G1Y1oLPnHnndErCydT1GVGLiMuB51THQiRfrDVCH4Hsx", obj.FeeOwner.Key);
+            Assert.AreEqual(1000U, obj.FeeY);
+            Assert.AreEqual(1U, obj.FeeX);
+            Assert.AreEqual(1509530640000U, obj.TotalReward);
+            Assert.AreEqual("88838124633", obj.RewardPerShareNet.Value.ToString());
+            Assert.AreEqual(92513582U, obj.LastBlock);
+            Assert.AreEqual(60000U, obj.RewardPerBlock);
+
+        }
+
+        [TestMethod]
+        public void TestDecodeUserStakeInfo()
+        {
+            var data = "AQAAAAAAAAAwJVfYF0XSStGbXQMEJ/GjLYbJ/DmGry871KvKi1alJ4TczqvkNHCV2q7CWo65cMM5ZlqBeZsecBTfDkODjiSiTSHqFwAAAACHBIdMCAAAAA==";
+            var buf = BufferDecoder.CreateFromBase64(data);
+            var obj = buf.DecodeAs<UserStakeInfo>();
+            Assert.AreEqual(1U, obj.State);
+            Assert.AreEqual("4EwbZo8BZXP5313z5A2H11MRBP15M5n6YxfmkjXESKAW", obj.PoolId.Key);
+            Assert.AreEqual("9we6kjtbcZ2vy3GSLLsZTEhbAqXPTRvEyoxa8wxSqKp5", obj.StakerOwner.Key); // test wallet address
+            Assert.AreEqual(401219917U, obj.DepositBalance);
+            Assert.AreEqual(35643655303U, obj.RewardDebt);
         }
 
     }
