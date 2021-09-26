@@ -23,7 +23,7 @@ namespace Solnet.Raydium.Programs
         public static readonly PublicKey ProgramId = new(Consts.STAKE_PROGRAM_ID);
 
         /// <summary>
-        /// Generate a transaction instuction that invokes the Deposit method of the Stake program.
+        /// Generate a transaction instruction that invokes the Deposit method of the Stake program.
         /// </summary>
         /// <returns></returns>
         public static TransactionInstruction Deposit(PublicKey poolId,
@@ -46,7 +46,7 @@ namespace Solnet.Raydium.Programs
             keys.Add(AccountMeta.Writable(poolLpTokenAccount, false));          // 06 Pool LP Token Account
             keys.Add(AccountMeta.Writable(userRewardTokenAccount, false));      // 07 User Reward Token Account
             keys.Add(AccountMeta.Writable(poolRewardTokenAccount, false));      // 08 Pool Reward Token Account
-            keys.Add(AccountMeta.ReadOnly(Consts.SYSVAR_CLOCK_PUBKEY, false));  // 09 SYSVAR Clock 
+            keys.Add(AccountMeta.Writable(Consts.SYSVAR_CLOCK_PUBKEY, false));  // 09 SYSVAR Clock 
             keys.Add(AccountMeta.Writable(TokenProgram.ProgramIdKey, false));   // 10 Token Program
 
             // var 
